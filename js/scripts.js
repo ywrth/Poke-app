@@ -1,4 +1,4 @@
-let pokemonList = [ //POKEMONLIST//
+let pokemonList = [ //list of pokemons//
     {
         name: 'Bulbasaur',
         id: 1,
