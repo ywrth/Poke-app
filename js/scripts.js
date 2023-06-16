@@ -31,11 +31,14 @@ function newFunction() {
     
     for (let i = 0; i < pokemonList.length; i++) {
         if (pokemonList[i].height < 6 && pokemonList[i].height > 0.5) {
-            document.write(pokemonList[i].name + " is super tall (" + pokemonList[i].height + ")");
+            document.write(pokemonList[i].name + " is super tall (height: " + pokemonList[i].height + ")<br>");
         } else if (pokemonList[i].height < 0.5) {
-            document.write(pokemonList[i].name + " is tiny (" + pokemonList[i].height + ")");
+            document.write(pokemonList[i].name + " is tiny (height: " + pokemonList[i].height + ")<br>");
         } else {
-            document.write(pokemonList[i].name + " is huge (" + pokemonList[i].height + ")");
+            document.write(pokemonList[i].name + " is huge (height: " + pokemonList[i].height + ")");
+            if (pokemonList[i].height > 5) {
+                document.write(" - WOW THAT'S BIG!<br> ");
         }
+    }
     }
 }
