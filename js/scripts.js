@@ -27,7 +27,7 @@ let pokemonRepository = (function () {
         height: 0.4
       }
     ];
-  
+
     // Function to add a new pokemon to the pokemonList array
     function add(pokemon) {
       if (typeof pokemon === 'object') {
@@ -36,12 +36,12 @@ let pokemonRepository = (function () {
         console.log('Only objects can be added to the pokemonList.');
       }
     }
-  
+
     // Function to get all the pokemon in the pokemonList array
     function getAll() {
       return pokemonList;
     }
-  
+
     // Function to create a button element for each pokemon in the pokemonList array
     function addListItem(pokemon) {
       let pokemonListElement = document.querySelector('.pokemon-list');
@@ -51,34 +51,34 @@ let pokemonRepository = (function () {
       button.classList.add('pokemon-button');
       listItem.appendChild(button);
       pokemonListElement.appendChild(listItem);
-  
+
       // Call the function to add the event listener to the button
       addButtonClickListener(button, pokemon);
     }
-  
+
     // Function to add event listener to a button
     function addButtonClickListener(button, pokemon) {
       button.addEventListener('click', function () {
         showDetails(pokemon);
       });
     }
-  
+
     // Function to show details of a pokemon
     function showDetails(pokemon) {
       console.log(pokemon);
     }
-  
+
     // Return an object with the add, getAll, and addListItem functions as public methods
     return {
-      add: add,
-      getAll: getAll,
-      addListItem: addListItem
+      add: add, // Public method to add a new pokemon to the pokemonList
+      getAll: getAll, // Public method to get all the pokemon in the pokemonList
+      addListItem: addListItem // Public method to create a button element for each pokemon
     };
   })();
-  
+
   // Print the entire pokemonList array
   console.log(pokemonRepository.getAll());
-  
+
   // Add a new pokemon to the pokemonList array
   pokemonRepository.add({
     name: 'Pikachu',
@@ -86,15 +86,14 @@ let pokemonRepository = (function () {
     type: ['electric'],
     height: 0.4
   });
-  
+
   // Print the updated pokemonList array
   console.log(pokemonRepository.getAll());
-  
+
   // Attempt to add an invalid pokemon (non-object)
   pokemonRepository.add('Invalid Pokemon');
-  
+
   // Loop through the pokemonList array and create buttons for each pokemon using addListItem()
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
-  
