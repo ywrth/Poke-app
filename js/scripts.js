@@ -1,4 +1,6 @@
+// Create a pokemonRepository using an IIFE (Immediately Invoked Function Expression)
 let pokemonRepository = (function () {
+    // Private variable to store the pokemonList array
     let pokemonList = [
       {
         name: 'Bulbasaur',
@@ -26,29 +28,41 @@ let pokemonRepository = (function () {
       }
     ];
   
+    // Function to add a new pokemon to the pokemonList array
     function add(pokemon) {
-      pokemonList.push(pokemon);
+      if (typeof pokemon === 'object') {
+        pokemonList.push(pokemon);
+      } else {
+        console.log('Only objects can be added to the pokemonList.');
+      }
     }
   
+    // Function to get all the pokemon in the pokemonList array
     function getAll() {
       return pokemonList;
     }
   
-    pokemonList.forEach(function (pokemon) {
-      if (pokemon.height < 6 && pokemon.height > 0.5) {
-        document.write(pokemon.name + " is super tall (height: " + pokemon.height + ")<br>");
-      } else if (pokemon.height < 0.5) {
-        document.write(pokemon.name + " is tiny (height: " + pokemon.height + ")<br>");
-      } else {
-        document.write(pokemon.name + " is huge (height: " + pokemon.height + ")");
-        if (pokemon.height > 5) {
-          document.write(" - WOW THAT'S BIG!<br> ");
-        }
-      }
-    });
-  
+    // Return an object with the add and getAll functions as public methods
     return {
       add: add,
       getAll: getAll
     };
   })();
+  
+  // Print the entire pokemonList array
+  console.log(pokemonRepository.getAll());
+  
+  // Add a new pokemon to the pokemonList array
+  pokemonRepository.add({
+    name: 'Pikachu',
+    id: 5,
+    type: ['electric'],
+    height: 0.4
+  });
+  
+  // Print the updated pokemonList array
+  console.log(pokemonRepository.getAll());
+  
+  // Attempt to add an invalid pokemon (non-object)
+  pokemonRepository.add('Invalid Pokemon');
+  
