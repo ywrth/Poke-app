@@ -51,13 +51,22 @@ let pokemonRepository = (function () {
       button.classList.add('pokemon-button');
       listItem.appendChild(button);
       pokemonListElement.appendChild(listItem);
+      button.addEventListener('click', function () {
+        showDetails(pokemon);
+      });
     }
   
-    // Return an object with the add, getAll, and addListItem functions as public methods
+    // Function to show details of a pokemon
+    function showDetails(pokemon) {
+      console.log(pokemon);
+    }
+  
+    // Return an object with the add, getAll, addListItem, and showDetails functions as public methods
     return {
       add: add,
       getAll: getAll,
-      addListItem: addListItem
+      addListItem: addListItem,
+      showDetails: showDetails
     };
   })();
   
