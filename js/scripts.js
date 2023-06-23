@@ -42,19 +42,20 @@ let pokemonRepository = (function () {
       return pokemonList;
     }
   
-    // Function to create a button element for each pokemon in the pokemonList array
-    function addListItem(pokemon) {
-      let pokemonListElement = document.querySelector('.pokemon-list');
-      let listItem = document.createElement('li');
-      let button = document.createElement('button');
-      button.innerText = pokemon.name;
-      button.classList.add('pokemon-button');
-      listItem.appendChild(button);
-      pokemonListElement.appendChild(listItem);
-      button.addEventListener('click', function () {
-        showDetails(pokemon);
-      });
-    }
+   // Function to create a button element for each pokemon in the pokemonList array
+function addListItem(pokemon) {
+    let pokemonListElement = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    button.innerText = pokemon.name;
+    button.classList.add('pokemon-button');
+    listItem.appendChild(button);
+    pokemonListElement.appendChild(listItem);
+  
+    button.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
+  }
   
     // Function to show details of a pokemon
     function showDetails(pokemon) {
