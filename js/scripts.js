@@ -42,10 +42,22 @@ let pokemonRepository = (function () {
       return pokemonList;
     }
   
-    // Return an object with the add and getAll functions as public methods
+    // Function to create a button element for each pokemon in the pokemonList array
+    function addListItem(pokemon) {
+      let pokemonListElement = document.querySelector('.pokemon-list');
+      let listItem = document.createElement('li');
+      let button = document.createElement('button');
+      button.innerText = pokemon.name;
+      button.classList.add('pokemon-button');
+      listItem.appendChild(button);
+      pokemonListElement.appendChild(listItem);
+    }
+  
+    // Return an object with the add, getAll, and addListItem functions as public methods
     return {
       add: add,
-      getAll: getAll
+      getAll: getAll,
+      addListItem: addListItem
     };
   })();
   
@@ -65,4 +77,9 @@ let pokemonRepository = (function () {
   
   // Attempt to add an invalid pokemon (non-object)
   pokemonRepository.add('Invalid Pokemon');
+  
+  // Loop through the pokemonList array and create buttons for each pokemon using addListItem()
+  pokemonRepository.getAll().forEach(function (pokemon) {
+    pokemonRepository.addListItem(pokemon);
+  });
   
