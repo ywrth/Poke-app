@@ -63,7 +63,8 @@ let pokemonRepository = (function () {
     return {
       add: add, // Public method to add a new pokemon to the pokemonList
       getAll: getAll, // Public method to get all the pokemon in the pokemonList
-      addListItem: addListItem // Public method to create a button element for each pokemon
+      addListItem: addListItem, // Public method to create a button element for each pokemon
+   loadList: loadList
     };
   })();
 
@@ -84,8 +85,8 @@ let pokemonRepository = (function () {
   // Attempt to add an invalid pokemon (non-object)
   pokemonRepository.add('Invalid Pokemon');
 
-  // Loop through the pokemonList array and create buttons for each pokemon using addListItem()
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
+  pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+    });
   });
-
