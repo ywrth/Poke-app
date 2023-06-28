@@ -2,6 +2,7 @@
 let pokemonRepository = (function () {
     // Private variable to store the pokemonList array
     let pokemonList = [];
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150'
 
     // Function to add a new pokemon to the pokemonList array
     function add(pokemon) {
@@ -26,16 +27,30 @@ let pokemonRepository = (function () {
       button.classList.add('pokemon-button');
       listItem.appendChild(button);
       pokemonListElement.appendChild(listItem);
-
-      // Call the function to add the event listener to the button
-      addButtonClickListener(button, pokemon);
-    }
-
-    // Function to add event listener to a button
-    function addButtonClickListener(button, pokemon) {
+      addButtonClickListener(button, pokemon); // Call the function to add the event listener to the button
+      function addButtonClickListener(button, pokemon) { // Function to add event listener to a button
       button.addEventListener('click', function () {
         showDetails(pokemon);
       });
+    }
+    }
+    // fetch function / promise
+    // this method will fetch data from the API, then add each Pokémon in the fetched data to pokemonList 
+    function loadList() {
+      return fetch(apiUrl).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url
+          };
+          add(pokemon);
+          console.log(pokemon);
+        });
+      }).catch(function (e) {
+        console.error(e);
+      })
     }
 
     // Function to show details of a pokemon
