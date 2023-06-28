@@ -30,8 +30,24 @@ let pokemonRepository = (function () {
     });
   }
 
+  function showLoadingMessage() {
+    let loadingMessage = document.createElement('p');
+    loadingMessage.innerText = 'Loading...';
+    document.body.appendChild(loadingMessage);
+  }
+
+  function hideLoadingMessage() {
+    let loadingMessage = document.querySelector('p');
+    if (loadingMessage) {
+      loadingMessage.remove();
+    }
+  }
+
   function loadList() {
+    showLoadingMessage();
+
     return fetch(apiUrl).then(function (response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -43,18 +59,23 @@ let pokemonRepository = (function () {
         console.log(pokemon);
       });
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
 
   function loadDetails(pokemon) {
+    showLoadingMessage();
+
     let url = pokemon.detailsUrl;
     return fetch(url).then(function (response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function (details) {
       pokemon.imgUrl = details.sprites.front_default;
       pokemon.height = details.height;
     }).catch(function (e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
