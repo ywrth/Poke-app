@@ -1,6 +1,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modal = document.getElementById('pokemon-modal');
 
   function add(pokemon) {
     if (
@@ -46,58 +47,89 @@ let pokemonRepository = (function () {
   function loadList() {
     showLoadingMessage();
 
-    return fetch(apiUrl).then(function (response) {
-      hideLoadingMessage();
-      return response.json();
-    }).then(function (json) {
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name,
-          detailsUrl: item.url
-        };
-        add(pokemon);
-        console.log(pokemon);
+    return fetch(apiUrl)
+      .then(function (response) {
+        hideLoadingMessage();
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name,
+            detailsUrl: item.url
+          };
+          add(pokemon);
+          console.log(pokemon);
+        });
+      })
+      .catch(function (e) {
+        hideLoadingMessage();
+        console.error(e);
       });
-    }).catch(function (e) {
-      hideLoadingMessage();
-      console.error(e);
-    });
   }
 
   function loadDetails(pokemon) {
     showLoadingMessage();
 
     let url = pokemon.detailsUrl;
-    return fetch(url).then(function (response) {
-      hideLoadingMessage();
-      return response.json();
-    }).then(function (details) {
-      pokemon.imgUrl = details.sprites.front_default;
-      pokemon.height = details.height;
-    }).catch(function (e) {
-      hideLoadingMessage();
-      console.error(e);
-    });
+    return fetch(url)
+      .then(function (response) {
+        hideLoadingMessage();
+        return response.json();
+      })
+      .then(function (details) {
+        pokemon.imgUrl = details.sprites.front_default;
+        pokemon.height = details.height;
+      })
+      .catch(function (e) {
+        hideLoadingMessage();
+        console.error(e);
+      });
   }
 
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
-      console.log(pokemon);
+      showModal(pokemon);
     });
   }
 
-  return {
-    add: add,
-    getAll: getAll,
-    addListItem: addListItem,
-    loadList: loadList,
-    loadDetails: loadDetails,
-    showDetails: showDetails
-  };
-})();
+  function showModal(pokemon) {
+    modal.innerHTML = '';
 
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
-    pokemonRepository.addListItem(pokemon);
-  });
-});
+    let nameElement = document.createElement('h2');
+    nameElement.innerText = pokemon.name;
+
+    let heightElement = document.createElement('p');
+    heightElement.innerText = 'Height: ' + pokemon.height;
+
+    let imageElement = document.createElement('img');
+    imageElement.src = pokemon.imgUrl;
+
+    modal.appendChild(nameElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(imageElement);
+
+    modal.style.display = 'block';
+    document.addEventListener('keydown', closeModalOnEsc);
+    modal.addEventListener('click', closeModalOnOutsideClick);
+    modal.querySelector('.close').addEventListener('click', closeModal);
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    document.removeEventListener('keydown', closeModalOnEsc);
+    modal.removeEventListener('click', closeModalOnOutsideClick);
+  }
+
+  function closeModalOnEsc(event) {
+    if (event.key === 'Escape') {
+      closeModal();
+    }
+  }
+
+  function closeModalOnOutsideClick(event) {
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
