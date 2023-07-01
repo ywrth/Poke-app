@@ -79,19 +79,20 @@ let pokemonRepository = (function () {
       });
   }
 
-  // Updated showDetails function
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
       showModal(pokemon);
     });
   }
 
-  // Function to show the modal
   function showModal(pokemon) {
-    // Modal container element
-    let modalContainer = document.getElementById('modal-container');
+    let modal = document.getElementById('pokemon-modal');
+    modal.innerHTML = '';
 
-    // Elements for the Pokémon's name, height, and image
+    let closeButton = document.createElement('button');
+    closeButton.classList.add('modal-close');
+    closeButton.innerHTML = '&times;';
+
     let nameElement = document.createElement('h2');
     nameElement.innerText = pokemon.name;
 
@@ -101,45 +102,43 @@ let pokemonRepository = (function () {
     let imageElement = document.createElement('img');
     imageElement.src = pokemon.imgUrl;
 
-    // Append elements to the modal container
-    modalContainer.innerHTML = '';
-    modalContainer.appendChild(nameElement);
-    modalContainer.appendChild(heightElement);
-    modalContainer.appendChild(imageElement);
+    modal.appendChild(closeButton);
+    modal.appendChild(nameElement);
+    modal.appendChild(heightElement);
+    modal.appendChild(imageElement);
 
-    // Display the modal container
-    modalContainer.classList.add('is-visible');
+    modal.style.display = 'block';
+
+    closeButton.addEventListener('click', function () {
+      hideModal();
+    });
+
+    window.addEventListener('click', function (event) {
+      if (event.target === modal) {
+        hideModal();
+      }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        hideModal();
+      }
+    });
   }
 
-  // Function to hide the modal
   function hideModal() {
-    let modalContainer = document.getElementById('modal-container');
-    modalContainer.classList.remove('is-visible');
+    let modal = document.getElementById('pokemon-modal');
+    modal.style.display = 'none';
   }
 
-  // Event listeners for closing the modal
-  let modalCloseButton = document.querySelector('.modal-close');
-  modalCloseButton.addEventListener('click', hideModal);
-
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      hideModal();
-    }
-  });
-
-  let modalContainer = document.getElementById('modal-container');
-  modalContainer.addEventListener('click', function (e) {
-    if (e.target === modalContainer) {
-      hideModal();
-    }
-  });
-
-  // hideLoadingMessage function to hide the loading message
   function hideLoadingMessage() {
     let loadingMessage = document.querySelector('p');
     if (loadingMessage) {
       loadingMessage.remove();
     }
+
+    let modal = document.getElementById('pokemon-modal');
+    modal.style.display = 'none';
   }
 
   return {
