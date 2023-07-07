@@ -38,3 +38,5 @@ The important files and directories in this project are as follows:
 # LINKS
 
 <a href="https://github.com/ywrth/Pokedex/tree/main" target="_blank">GitHub Repository</a>
+
+<a href="https://ywrth.github.io/Pokedex/" target="_blank">PokeDex live</a> 
