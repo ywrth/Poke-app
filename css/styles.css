@@ -1,60 +1,178 @@
-html, 
-body {
-  font-family: Arial, sans-serif;
+
+:root {
+  --text-color: rgb(177, 28, 65);
+  --accent-color: rgb(65, 189, 20);
+  --screen-color: rgba(46, 56, 64, 1);
+  --background-color: #8a52ad;
 }
 
-.modal-container {
-  display: grid;
-  position: fixed;
-  box-sizing: border-box;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(253, 88, 242, 0.5);
-  z-index: 999;
-  overflow: auto; 
-  text-align: center;
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 40px;  
+  font-weight: 700;
+  color: rgba(249, 219, 187, 1);
+}
+
+div.pokedex {
+  background: rgb(123, 83, 121);
+  border: 5px rgba(78, 110, 129, 1);
+  max-width: null;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+
+
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: 10px;
+}
+
+.navbar-nav {
+  flex-direction: row;
+  flex-wrap: wrap;
   
 }
 
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width:600px; /* Adjust the width as desired */
-  height: 900px;
-  max-width: 90%; /* Add a maximum width if needed */
-  background-color: #fff;
-  padding: 20px;
-  text-align: center;
-
+.nav-item {
+  display: inline;
+  width: 50%;
 }
 
+.navbar-nav.ml-auto {
+  justify-content: flex-end; /* Align items to the right */
+}
+
+.navbar-custom {
+  background-color: #8a52ad /* Set your desired background color */
+  color white; /* Set your desired text color */
+}
+
+.nav-link {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  transition: font-size 500ms;
+  color: white; /* Set the text color to white */
+}
+
+.nav-link:hover {
+  font-size: 17px;
+}
+
+.navbar-brand {
+  font-size: 40px;
+  color:azure;
+}
+
+/* Main Section Styles */
+.pokedex__main {
+  width: 90%;
+  margin: 0 0 20px 0;
+}
+
+.pokemon-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.list-button {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: rgba(46, 56, 64, 1);
+  color: rgba(249, 219, 187, 1);
+  border: 2px solid rgba(78, 110, 129, 1);
+  width: 100%;
+  height: auto;
+  padding: 5px 20px;
+  margin: 5px 0;
+  text-align: left;
+}
+
+.list-group-item {
+  background-color: rgba(0, 0, 0, 0);
+  padding: 0;
+  border: rgba(0, 0, 0, 0);
+}
+
+/* Modal to showDetails */
+.modal-container {
+  display: none;
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: rgb(165, 76, 181);
+  border: 2px solid rgba(78, 110, 129, 1);
+  color: rgba(0, 0, 0, 0.5);
+  padding: 15px;
+  height: auto;
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
+}
+
+.modal-content h1 {
+  margin-top: 0;
+}
+
+.modal-content p {
+  margin-bottom: 0;
+  font-family: 'Arial', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: rgb(6, 89, 177);
+  color: rgba(249, 219, 187, 1);
+  border: 2px solid rgba(78, 110, 129, 1);
+  width: auto;
+  height: auto;
+  padding: 5px 20px;
+  margin: 5px 0;
+}
 
 .modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
+  float: right;
+  border: 0;
+  background: none;
+  color: rgba(249, 219, 187, 1);
+  text-decoration: underline;
+  opacity: 1;
+  text-shadow: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
 }
 
-.modal-close:focus {
-  outline: none;
+.modal-content img {
+  float: right;
+  max-width: 200px;
+  max-height: 200px;
+  width: 100%;
 }
 
-.modal h2 {
-  margin-top: 0;
-  margin-right: 50px;
-  margin-left: 50px;
-  text-align: center; /* Add text alignment */
+@media screen and (max-width: 420px) {
+  .modal-content img {
+      max-width: 170px;
+      max-height: 170px;
+  }
 }
 
-.modal p {
-  margin-bottom: 0;
-  text-align: center; /* Add text alignment */
-  margin: 20px 50px; /* Adjust the margin values as desired */
+@media screen and (max-width: 370px) {
+  .modal-content img {
+      max-width: 110px;
+      max-height: 110px;
+  }
 }
