@@ -104,6 +104,8 @@ div.pokedex {
 .pokemon-container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh; /* Adjust this value as needed */
 }
 
 .pokemon-list {
@@ -112,7 +114,7 @@ div.pokedex {
   grid-gap: 20px;
   max-width: 800px; /* Adjust this value as needed */
   padding: 20px;
-  margin: 0;
+  margin: 0 auto; /* Center horizontally */
   list-style-type: none;
 }
 
