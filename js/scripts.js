@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let api = [
-    { url: 'https://pokeapi.co/api/v2/pokemon/?limit=200', gen: 'I', offset: 0 },
+    { url: 'https://pokeapi.co/api/v2/pokemon/?limit=200', offset: 0 },
   ];
   let currentApi = api[0];
 
@@ -13,29 +13,16 @@ let pokemonRepository = (function () {
     let navbarNav = document.querySelector('.navbar-nav');
     let navItem = document.createElement('li');
     let button = document.createElement('button');
-
+  
     $(button)
       .addClass('nav-link btn btn-link')
-      .text(`Gen. ${item.gen} Pokémon`)
+      .text(`Resources`)
       .on('click', function () {
-        let current = document.querySelector('span.sr-only');
-        $(current).remove();
-
-        changeApi(item);
-
-        let span = document.createElement('span');
-        $(span).addClass('sr-only').text('(current)');
-        button.appendChild(span);
+        window.location.href = 'https://pokedex.org/';
       });
-
-    if (currentApi.offset === item.offset) {
-      let span = document.createElement('span');
-      $(span).addClass('sr-only').text('(current)');
-      button.appendChild(span);
-    }
-
+  
     $(navItem).addClass('nav-item');
-
+  
     navItem.appendChild(button);
     navbarNav.appendChild(navItem);
   }
@@ -55,11 +42,11 @@ let pokemonRepository = (function () {
   }
 
   function convertHeight(n) {
-    return n + ' m'; // Return the original height value
+    return n + ' m'; // to return the original value
   }
   
   function convertWeight(n) {
-    return n + ' kg'; // Return the original weight value
+    return n + ' kg'; // to return the original value
   }
 
   function showLoadingMessage() {
