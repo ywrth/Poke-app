@@ -32,3 +32,5 @@ The important files and directories in this project are as follows:
 - pokemon-23.svg: An image file used as the logo in the navigation bar.
 - js/promise-polyfill.js: The Promise polyfill script.
 - js/fetch-polyfill.js: The Fetch polyfill script.
+
+![Screenshot](img/Screenshot%202023-07-07%20at%2012.20.08.png)
