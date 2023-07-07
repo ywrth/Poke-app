@@ -34,3 +34,7 @@ The important files and directories in this project are as follows:
 - js/fetch-polyfill.js: The Fetch polyfill script.
 
 ![Screenshot](img/Screenshot%202023-07-07%20at%2012.20.08.png)
+
+# LINKS
+
+<a href="https://github.com/ywrth/Pokedex/tree/main" target="_blank">GitHub Repository</a>
