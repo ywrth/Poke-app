@@ -136,9 +136,9 @@ div.pokedex {
 
 
 .styled-button {
-  /* Add your desired styling properties here */
+
   background-color: #cce206;
-  color: rgb(91, 79, 220);
+  color: #385faa;
   border: none;
   padding: 10px 20px;
   font-size: 16px;
@@ -192,7 +192,7 @@ div.pokedex {
   font-family: 'Arial', monospace;
   font-size: 16px;
   font-weight: 400;
-  background-color: rgb(6, 89, 177);
+  background-color: #385faa;
   color: rgba(249, 219, 187, 1);
   border: 2px solid rgba(78, 110, 129, 1);
   width: auto;
